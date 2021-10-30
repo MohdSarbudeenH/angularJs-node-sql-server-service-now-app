@@ -6,7 +6,7 @@
     <div class="modal-body">
         <form name="vm.updateTicketForm" class="form-horizontal" role="form">
             <div class="form-group">
-                      <label class="col-sm-3 control-label">UserName</label>
+                      <label class="col-sm-3 control-label">User Name</label>
                       <div class="col-sm-8">
                         <input type="text" name="username" ng-model="vm.editingRow.UserName"  class="form-control" readonly>
                       </div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="form-group">
-                  <label class="col-sm-3 control-label">TicketStatus<sup class="sup-color">*</sup></label>
+                  <label class="col-sm-3 control-label">Ticket Status<sup class="sup-color">*</sup></label>
                   <div class="col-sm-8">
                       <select name="ticketstatusDropdwn"  ng-model="vm.editingRow.TicketStatus"  class="form-control" >
                             <option value="Open">Open</option>
@@ -27,7 +27,7 @@
                   </div>
             </div>
             <div class="form-group" ng-class="{ 'has-error': vm.updateTicketForm.fixeddescription.$dirty && vm.updateTicketForm.fixeddescription.$error.required }" ng-show="vm.editingRow.TicketStatus =='Closed'" >
-                <label class="col-sm-3 control-label">FixedDescrption<sup class="sup-color">*</sup></label>
+                <label class="col-sm-3 control-label">Fixed Description<sup class="sup-color">*</sup></label>
                 <div class="col-sm-8">
                     <input type="text" name="fixeddescription" ng-model="vm.editingRow.FixedDescription" class="form-control" required>
                     <span ng-show="vm.updateTicketForm.fixeddescription.$dirty && vm.updateTicketForm.fixeddescription.$error.required" class="help-block">Fixed Descrption is required</span>
