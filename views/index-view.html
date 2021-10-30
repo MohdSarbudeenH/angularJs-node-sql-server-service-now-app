@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Service Portal</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="/stylesheets/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="/node_modules/ng-notify/dist/ng-notify.min.css">    
+</head>
+<body>
+     <div class="jumbotron" style="padding:30px;">
+        <div class="container" style="width:1300px;">
+            <div ng-view></div>
+        </div>
+     </div> 
+    
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="/node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="/node_modules/angular-material/angular-material.min.js"></script>
+    <script src="/node_modules/angular-smart-table/dist/smart-table.min.js"></script>
+    <script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>     
+    <script src="/node_modules/ng-csv/build/ng-csv.min.js"></script>
+    <script src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script> <!-- For Modal box -->
+    <script src="/node_modules/ng-notify/dist/ng-notify.min.js"></script> <!-- For Alert -->
+    
+    <script src="/javascripts/modules/app-module.js"></script>
+    <script src="/javascripts/services/authentication-service.js"></script>
+    
+    <!-- <script src="/javascripts/services/excel-service.js"></script> -->
+ 
+    <!-- Real user service that uses an api -->
+    <script src="/javascripts/services/user-service.js"></script>
+
+    <!-- Fake user service for demo that uses local storage -->
+    <!-- <script src="/javascripts/services/user-service-local-storage.js"></script> -->
+
+    <!-- controller -->
+    <script src="/javascripts/controllers/home-controller.js"></script>
+    <script src="/javascripts/controllers/login-controller.js"></script>
+    <script src="/javascripts/controllers/register-controller.js"></script>
+    <script src="/javascripts/controllers/create-ticket-controller.js"></script>
+    <script src="/javascripts/controllers/view-ticket-controller.js"></script>
+    
+    <!-- directive -->
+    <script src="/javascripts/directives/confirm-directive.js"></script>
+    
+    
+</body>
+</html>

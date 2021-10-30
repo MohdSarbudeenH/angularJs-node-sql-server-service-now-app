@@ -1,0 +1,180 @@
+<div ng-cloak>
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Report an Issue">
+          <md-content class="md-padding">
+            <h3 class="md-display-1">Create new incident ticket</h3>
+             <form name="vm.ticketForm" class="css-form" ng-submit="vm.addTicket(vm.ticketForm)" ng-controller='CreateTicketController as vm' role="form" novalidate>
+                <br/><br/>
+                <table style="width:100%; line-height:25px;" >
+                  <tr>
+                    <td><label>* Open on behalf of this user </label></td>
+                  <td><label>* Impact</label></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>
+                    <input input type="text" name="userName" ng-model="vm.formData.userName" size="50" required></input>
+                    <div style="color:red;" ng-show="vm.ticketForm.$submitted ||vm.ticketForm.userName.$touched">
+                      <div ng-show="vm.ticketForm.userName.$error.required">UserName is required</div>
+                    </div>
+                  </td>
+                  <td>
+                    <select id="selectCss" name="impact" ng-model="vm.formData.selectedImpact" ng-options="x for x in vm.impactList" required ></select>
+                    <div style="color:red;" ng-show="vm.ticketForm.$submitted ||vm.ticketForm.impact.$touched">
+                      <div ng-show="vm.ticketForm.impact.$error.required">Impact is required</div>
+                    </div>
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                    <td><label>Requestor Name</label></td>
+                  <td><label>* Urgency</label></td>
+                  </tr>
+                  
+                   <tr>
+                    <td><input input type="text" name="reqName" ng-model="vm.formData.requestorName" size="50"></input></td>
+                  <td>
+                    <select id="selectCss" name="urgency"  ng-model="vm.formData.selectedUrgency" ng-options="x for x in vm.urgencyList" required ></select>
+                    <div style="color:red;" ng-show="vm.ticketForm.$submitted ||vm.ticketForm.urgency.$touched">
+                      <div ng-show="vm.ticketForm.urgency.$error.required">Urgency is required</div>
+                    </div>
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                    <td><label>Please select the application or service</label></td>
+                  <td><label>* Priority</label></td>
+                  </tr>
+                  
+                   <tr>
+                    <td>
+                    <select id="selectCss" name="appName"  ng-model="vm.formData.selectedAppName" ng-options="x for x in vm.appNameList" required></select>
+                    <div style="color:red;" ng-show="vm.ticketForm.$submitted ||vm.ticketForm.appName.$touched">
+                        <div ng-show="vm.ticketForm.appName.$error.required">App or Service name is required</div>
+                    </div>
+                  </td>
+                  <td>
+                    <select id="selectCss" name="priority"  ng-model="vm.formData.selectedPriority" ng-options="x for x in vm.priorityList" required></select>
+                    <div style="color:red;" ng-show="vm.ticketForm.$submitted ||vm.ticketForm.priority.$touched">
+                        <div ng-show="vm.ticketForm.priority.$error.required">Priority is required</div>
+                    </div>
+                  </td>
+                  </tr>
+                  <tr>
+                    <td><label>* Description</label></td>
+                  </tr>
+                  <tr>
+                    <td>
+                    <textarea name="description" class="textAreaStyle" ng-model="vm.formData.description" size="75" required></textarea>
+                    <div style="color:red;" ng-show="vm.ticketForm.$submitted ||vm.ticketForm.description.$touched">
+                        <div ng-show="vm.ticketForm.description.$error.required">Description is required</div>
+                    </div>
+                  </td>
+                             
+                  <tr><td style="float:right; padding-top: 20px;">
+                    <!-- <button ng-click="vm.addTicket(vm.ticketForm)" ng-disabled="vm.ticketForm.userName.$invalid || vm.ticketForm.impact.$invalid || vm.ticketForm.urgency.$invalid || vm.ticketForm.appName.$invalid || vm.ticketForm.priority.$invalid || vm.ticketForm.description.$invalid"
+                      style="width:100px; height:25px;"> Submit </button>  -->
+                      <div class="form-actions">
+                          <button type="submit" ng-disabled="vm.ticketForm.$invalid" class="btn btn-primary">Submit</button>
+                          <!-- <a href="#!/login" class="btn btn-link">Cancel</a> -->
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+               </form>
+              
+              
+               
+              </md-content>
+        
+        </md-tab>
+
+        <md-tab label="My Tickets">
+          <md-content class="md-padding">
+            <br/>
+            <div ng-controller='ViewTicketController as vm'>
+                    <div>
+                        <label>Enter date :</label>
+                        <input type="date" name="inpDate" ng-model="vm._dateFilter" size="25" value="{{ vm._dateFilter | date: 'yyyy-MM-dd' }}" > </input>
+                              <button id="search" ng-click="vm.search(vm._dateFilter)">Search</button>
+                    </div>
+              <br/>
+              <br/>
+                <table id="ticketListTable" st-table="vm.ticketCollection" st-safe-src="vm.ticketList"  class="table table-striped">
+                   <thead>
+                        <tr>
+                          <th >Action</th>
+                          <th st-sort="TicketInfoID">TicketId</th>
+                          <th st-sort="UserName">UserName</th>
+                          <th st-sort="RequestorName">RequestorName</th>
+                          <th st-sort="AppOrServiceName">AppOrServiceName</th>
+                          <th st-sort="Description">Description</th>
+                          <th st-sort="Impact">Impact</th>
+                          <th st-sort="Urgency">Urgency</th>
+                          <th st-sort="Priority">Priority</th>
+                          <th st-sort="TicketStatus">TicketStatus</th>
+                          <th st-sort="CreatedDate">CreatedDate</th>
+                          <th st-sort="CreatedBy">CreatedBy</th>                       
+                        </tr>
+                        <tr>
+                          <th colspan="3"><input st-search="" placeholder="Global Filter..." class="input-sm form-control"  type="search"/></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th><input st-search="TicketStatus" placeholder="Filter Status ..." class="input-sm form-control"  type="search"/></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="tckt in vm.ticketCollection" >
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="..." style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                      <button type="button" ng-click="vm.editTicket(tckt)" class="btn btn-sm btn-info">
+                                            <i class="glyphicon glyphicon-edit"/>
+                                      </button>
+                                      <button type="button" ng-click="vm.showDeleteConfirm($event, $index)" class="btn btn-sm btn-danger">
+                                          <i class="glyphicon glyphicon-trash"/>
+                                      </button>   
+                                    </div>
+                                </td> 
+                                <td>{{ tckt.TicketInfoID }}</td>
+                                <td>{{ tckt.UserName }}</td>
+                                <td>{{ tckt.RequestorName }}</td>
+                                <td>{{ tckt.AppOrServiceName }}</td>
+                                <td>{{ tckt.Description }}</td>
+                                <td>{{ tckt.Impact }}</td>
+                                <td>{{ tckt.Urgency }}</td>
+                                <td>{{ tckt.Priority }}</td>
+                                <td ng-if="tckt.TicketStatus == 'Open'" >
+                                      <i class="glyphicon glyphicon-eye-open"></i> {{ tckt.TicketStatus }}
+                                </td>
+                                <td ng-if="tckt.TicketStatus == 'Closed'" title="{{tckt.FixedDescription}}">
+                                    <i class="glyphicon glyphicon-eye-close"></i> {{ tckt.TicketStatus }}
+                                </td>
+                                <td>{{ tckt.CreatedDate | date:'MM-dd-yyyy' }}</td>
+                                <td>{{ tckt.CreatedBy }}</td>
+                                                               
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                              <td colspan=11 class="text-center">
+                                <div st-pagination="" st-items-by-page="7" st-displayed-pages="5"></div>
+                              </td>
+                            </tr>
+                          </tfoot>  
+                    </table>
+                                        
+                    <button class="btn btn-link"  ng-csv="vm.getExcelList" lazy-load="true" csv-header="vm.getHeader()"  filename="ServiceCatalog.csv">
+                        <span class="glyphicon glyphicon-share"></span> Export to Excel
+                    </button>
+                </div>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+    <!-- <p><a href="#!/login"  class="btn btn-primary">Logout</a></p> -->
+  </div>
